@@ -10,7 +10,7 @@ import {
 
 export class CreateProductDto {
   @IsString()
-  tytle: string;
+  title: string;
 
   @IsNumber()
   @IsPositive()
