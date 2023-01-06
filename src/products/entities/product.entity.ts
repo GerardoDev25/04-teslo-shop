@@ -18,7 +18,7 @@ export class Product {
   slug: string;
 
   @Column('int', { default: 0 })
-  stok: number;
+  stock: number;
 
   @Column('text', { array: true })
   sizes: string[];
