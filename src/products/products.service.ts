@@ -88,6 +88,8 @@ export class ProductsService {
   }
 
   async update(id: string, data: UpdateProductDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+
     try {
       const { images, ...toUpdate } = data;
 
@@ -100,11 +102,26 @@ export class ProductsService {
         throw new NotFoundException(`product with term: ${id} not found`);
       }
 
-      // create queryRunner
-      const queryRunner = this.dataSource.createQueryRunner();
+      // * create queryRunner
+      await queryRunner.connect();
+      await queryRunner.startTransaction();
 
-      return this.productRepository.save(product);
+      if (images) {
+        await queryRunner.manager.delete(ProductImage, { product: { id } });
+        product.images = images.map((image) =>
+          this.productImageRepository.create({ url: image }),
+        );
+      }
+
+      await queryRunner.manager.save(product);
+      await queryRunner.commitTransaction();
+      await queryRunner.release();
+
+      return this.findOne(id);
+
+      // return this.productRepository.save(product);
     } catch (error) {
+      await queryRunner.rollbackTransaction();
       this.handleDbException(error);
     }
   }
