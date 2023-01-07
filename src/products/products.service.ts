@@ -64,8 +64,6 @@ export class ProductsService {
 
   async update(id: string, data: UpdateProductDto) {
     try {
-      if (data.slug) data.slug = data.slug.replaceAll(' ', '');
-
       const product = await this.productRepository.preload({ id, ...data });
 
       if (!product) {
