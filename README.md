@@ -19,3 +19,8 @@ docker-compose up -d
 ```
 
 * 6 levantar la app en modo desalloro ```yarn dev```
+
+* 7 ejecutar seed 
+```
+http://localhost:3000/api/seed
+```
