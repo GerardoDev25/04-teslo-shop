@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Controller,
   Post,
   UploadedFile,
@@ -6,14 +7,19 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
+import { fileFilter } from './helpers/filefilter.helper';
 
 @Controller('files')
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
   @Post('product')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('file', { fileFilter }))
   uploadedProductImage(@UploadedFile() file: Express.Multer.File) {
-    return file;
+    if (!file) {
+      throw new BadRequestException('File is empty');
+    }
+
+    return file.originalname;
   }
 }
