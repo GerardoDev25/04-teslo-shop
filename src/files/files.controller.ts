@@ -8,6 +8,7 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { diskStorage } from 'multer';
@@ -18,7 +19,10 @@ import { fileNamer } from './helpers/fileNamer.helper';
 
 @Controller('files')
 export class FilesController {
-  constructor(private readonly filesService: FilesService) {}
+  constructor(
+    private readonly filesService: FilesService,
+    private readonly configService: ConfigService,
+  ) {}
 
   @Get('product/:imageName')
   finsProductImage(
@@ -46,8 +50,10 @@ export class FilesController {
       throw new BadRequestException('File is empty');
     }
 
-    const secureUrl = `${file.filename}`;
+    const secureUrl = `${this.configService.get('HOST_API')}/files/product/${
+      file.filename
+    }`;
 
-    return { filename: file.filename };
+    return { url: secureUrl };
   }
 }
