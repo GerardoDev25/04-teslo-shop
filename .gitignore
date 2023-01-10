@@ -40,3 +40,5 @@ lerna-debug.log*
 
 # data base volume
 postgres/
+
+public/products
