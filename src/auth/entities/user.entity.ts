@@ -14,7 +14,7 @@ export class User {
   @Column('text', { nullable: false })
   fullName: string;
 
-  @Column('bool', { default: false })
+  @Column('bool', { default: true })
   isActive: boolean;
 
   @Column('text', { array: true, default: ['user'] })
