@@ -39,6 +39,7 @@ export class AuthService {
       this.handleDbException(error);
     }
   }
+
   async login(data: LoginUserDto) {
     const { email, password } = data;
 
@@ -55,6 +56,10 @@ export class AuthService {
       throw new UnauthorizedException('credentials are not valid');
     }
 
+    return { ...user, token: this.getJwToken({ id: user.id }) };
+  }
+
+  async checkAuthStatus(user: User) {
     return { ...user, token: this.getJwToken({ id: user.id }) };
   }
 
