@@ -13,35 +13,64 @@ import { ProductImage } from './product-image.entity';
 
 @Entity({ name: 'products' })
 export class Product {
-  @ApiProperty()
+  @ApiProperty({
+    example: '0509d441-7b90-4342-8e3f-afddd06adaa4',
+    description: 'product id',
+    uniqueItems: true,
+  })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'T-shirt teslo',
+    description: 'product title',
+    uniqueItems: true,
+  })
   @Column('text', { unique: true })
   title: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 0,
+    description: 'product price',
+    default: 0,
+  })
   @Column('float', { default: 0 })
   price: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet ',
+    description: 'product description',
+  })
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 't-shirt_teslo',
+    description: 'product id',
+    uniqueItems: true,
+  })
   @Column('text', { unique: true })
   slug: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 10,
+    description: 'product stock',
+    default: 0,
+  })
   @Column('int', { default: 0 })
   stock: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: ['M', 'XL', 'XXL'],
+    description: 'product sizes',
+  })
   @Column('text', { array: true })
   sizes: string[];
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'woman',
+  })
   @Column('text')
   gender: string;
 
