@@ -34,6 +34,21 @@ export class MessagesWsGateway
 
   @SubscribeMessage('message-from-client')
   hadleMessageFormClient(client: Socket, payload: NewMessageDto) {
-    console.error(client.id, payload);
+    // * emitir al cliente
+    // client.emit('messages-from-server', {
+    //   fullName: 'i',
+    //   message: payload.message || 'no message',
+    // });
+    // * emitir a todos menos al cliente
+    // client.broadcast.emit('messages-from-server', {
+    //   fullName: 'i',
+    //   message: payload.message || 'no message',
+    // });
+
+    // * emitir a todos
+    this.wss.emit('messages-from-server', {
+      fullName: 'i',
+      message: payload.message || 'no message',
+    });
   }
 }
