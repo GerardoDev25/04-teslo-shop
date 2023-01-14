@@ -1,10 +1,12 @@
 import {
   OnGatewayConnection,
   OnGatewayDisconnect,
+  SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { NewMessageDto } from './dtos/new-message.dto';
 import { MessagesWsService } from './messages-ws.service';
 
 @WebSocketGateway({ cors: true })
@@ -28,5 +30,10 @@ export class MessagesWsGateway
       'clients-updated',
       this.messagesWsService.getConnectedClient(),
     );
+  }
+
+  @SubscribeMessage('message-from-client')
+  hadleMessageFormClient(client: Socket, payload: NewMessageDto) {
+    console.error(client.id, payload);
   }
 }
