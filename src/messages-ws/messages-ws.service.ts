@@ -10,7 +10,7 @@ interface ConnectedClient {
 
 @Injectable()
 export class MessagesWsService {
-  private connectedClient: ConnectedClient = {};
+  private connectedClients: ConnectedClient = {};
 
   constructor(
     @InjectRepository(User)
@@ -23,18 +23,30 @@ export class MessagesWsService {
     if (!user) throw new Error('user not found');
     if (!user.isActive) throw new Error('user not active');
 
-    this.connectedClient[client.id] = { socket: client, user };
+    this.checkUserConnection(user);
+
+    this.connectedClients[client.id] = { socket: client, user };
   }
 
   removeClient(clientId: string) {
-    delete this.connectedClient[clientId];
+    delete this.connectedClients[clientId];
   }
 
   getConnectedClient(): string[] {
-    return Object.keys(this.connectedClient);
+    return Object.keys(this.connectedClients);
   }
 
   getUserFullNameBySocketId(socketId: string): string {
-    return this.connectedClient[socketId].user.fullName;
+    return this.connectedClients[socketId].user.fullName;
+  }
+
+  private checkUserConnection(user: User) {
+    for (const clientId of Object.keys(this.connectedClients)) {
+      const connectedClient = this.connectedClients[clientId];
+      if (connectedClient.user.id === user.id) {
+        connectedClient.socket.disconnect();
+        break;
+      }
+    }
   }
 }
