@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "7fc75bd4-b6b4-47f9-9507-7cc31b02ddd3",
+		"name": "NEST (F. H.)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17729045"
+	},
+	"item": [
+
+		{
+			"name": "E-commerce-shop",
+			"item": [
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ0MjA2ZTllLTViMjktNGZlYS1iYTBiLTFkZjgyN2VmZGQwYiIsImlhdCI6MTY3MzU1NDI2NywiZXhwIjoxNjczNTYxNDY3fQ.Uq7UdcOgFHGzarP9DZLjc1fLT8tQ1QbeuoaZkoES0t0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"gerardo's shirt 7\",\n    \"sizes\": [\n        \"m\",\n        \"xl\"\n    ],\n    \"gender\": \"men\",\n    \"price\": 156.78,\n    \"tags\": [\n        \"shit\",\n        \"shit2\"\n    ],\n    \"images\": [\n        \"http://image1.jpg\",\n        \"http://image2.jpg\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/products/0509d441-7b90-4342-8e3f-afddd06adaa4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"products",
+										"0509d441-7b90-4342-8e3f-afddd06adaa4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/products/fc94db6c-c333-4b8b-a18f-1a9cb2e83469",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"products",
+										"fc94db6c-c333-4b8b-a18f-1a9cb2e83469"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"images\": [\n        \"http://image5.jpg\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/products/fc94db6c-c333-4b8b-a18f-1a9cb2e83469",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"products",
+										"fc94db6c-c333-4b8b-a18f-1a9cb2e83469"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "files",
+					"item": [
+						{
+							"name": "upload product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/home/gerardo/Desktop/LEARN/FULL PROGRAMMING/02 - Nest: Desarrollo backend escalable con Node/12 - Carga de archivos/products/8765130-00-A_1.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/files/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"files",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get file product",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/files/product/1700280-00-A_0_2000.jpg",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"files",
+										"product",
+										"1700280-00-A_0_2000.jpg"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"Jonh@Doe6.com\",\n    \"password\": \"AbC1231\",\n    \"fullName\": \"jonh6\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"Jonh@Doe1.com\",\n    \"password\": \"AbC1231\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "route private",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ0MjA2ZTllLTViMjktNGZlYS1iYTBiLTFkZjgyN2VmZGQwYiIsImlhdCI6MTY3MzUzMzY2MCwiZXhwIjoxNjczNTQwODYwfQ.LXNtcm91Vno2JpRvGkQVMZplF_L_0K4f9v3Oeb3s9LQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/auth/private",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check-status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcyODEyYzY4LTE3YTgtNDdhYy1iOTFkLTk1NTk4NTNjODYwNiIsImlhdCI6MTY3MzU2NjY2MSwiZXhwIjoxNjczNTczODYxfQ.7-985KMAAP76VBE9wOwMBtN1x-d2oNn1uP4UzMA4HS4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/auth/check-status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"check-status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "seed",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ0MjA2ZTllLTViMjktNGZlYS1iYTBiLTFkZjgyN2VmZGQwYiIsImlhdCI6MTY3MzU1MjQ0MCwiZXhwIjoxNjczNTU5NjQwfQ.Et7C5cF9ZQG2KW9dtz3I92rPEPpNQwEHNQROmZU39Mk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/seed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seed"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
